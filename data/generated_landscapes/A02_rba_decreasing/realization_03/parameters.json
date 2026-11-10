@@ -1,0 +1,152 @@
+{
+  "architecture": {
+    "name": "A02_rba_decreasing",
+    "group": "A",
+    "framework": "RBA",
+    "kind": "dense",
+    "order_scales": {
+      "1": 1.0,
+      "2": 0.5,
+      "3": 0.25,
+      "4": 0.125
+    },
+    "description": "RBA terms at all orders; RMS halves with each order (1, 0.5, 0.25, 0.125)."
+  },
+  "realization": 3,
+  "seed": {
+    "numpy_default_rng_seed": [
+      20240911,
+      2,
+      3
+    ],
+    "meaning": "[BASE_SEED, architecture_number, realization]"
+  },
+  "genotype_space": {
+    "states": [
+      "A",
+      "V",
+      "L",
+      "G"
+    ],
+    "n_sites": 4,
+    "n_genotypes": 256,
+    "rba_reference": "AAAA",
+    "genotype_order": "lexicographic in state order A,V,L,G; site 1 slowest"
+  },
+  "standardization": {
+    "raw_mean": -0.586140052987089,
+    "raw_sd_population": 1.9003171770878815,
+    "formula": "phenotype = (phenotype_unstandardized - raw_mean) / raw_sd_population"
+  },
+  "realized": {
+    "rfa_variance_fraction_by_order": {
+      "1": 0.8469948191526693,
+      "2": 0.1398716254379005,
+      "3": 0.01265529251452876,
+      "4": 0.00047826289490131047
+    },
+    "rfa_nonzero_terms_by_order": {
+      "1": 16,
+      "2": 96,
+      "3": 256,
+      "4": 256
+    },
+    "rfa_total_terms_by_order": {
+      "1": 16,
+      "2": 96,
+      "3": 256,
+      "4": 256
+    },
+    "rfa_rms_by_order": {
+      "1": 0.4601616072513736,
+      "2": 0.15268247303794705,
+      "3": 0.05624787221426417,
+      "4": 0.02186922254908278
+    },
+    "rba_nonzero_terms_by_order": {
+      "1": 12,
+      "2": 54,
+      "3": 108,
+      "4": 81
+    },
+    "rba_total_terms_by_order": {
+      "1": 12,
+      "2": 54,
+      "3": 108,
+      "4": 81
+    },
+    "rba_rms_by_order": {
+      "1": 0.5262279434491237,
+      "2": 0.26311397172456186,
+      "3": 0.13155698586228096,
+      "4": 0.06577849293114046
+    }
+  },
+  "verification": {
+    "tolerance": 1e-10,
+    "checks": {
+      "standardized_mean_abs": {
+        "value": 6.938893903907228e-17,
+        "passed": true
+      },
+      "standardized_variance_minus_1_abs": {
+        "value": 4.440892098500626e-16,
+        "passed": true
+      },
+      "rfa_reconstruction_max_abs_error": {
+        "value": 3.469446951953614e-18,
+        "passed": true
+      },
+      "rba_reconstruction_max_abs_error": {
+        "value": 0.0,
+        "passed": true
+      },
+      "rfa_zero_sum_max_violation": {
+        "value": 8.881784197001252e-16,
+        "passed": true
+      },
+      "rfa_intercept_equals_mean_abs": {
+        "value": 0.0,
+        "passed": true
+      },
+      "rba_reference_terms_max_abs": {
+        "value": 4.440892098500626e-16,
+        "passed": true
+      },
+      "rba_intercept_equals_reference_phenotype_abs": {
+        "value": 0.0,
+        "passed": true
+      },
+      "rfa_variance_partition_sum_error": {
+        "value": 2.220446049250313e-16,
+        "passed": true
+      },
+      "generating_terms_recovered_max_abs_error": {
+        "value": 1.3253287356462806e-15,
+        "passed": true
+      },
+      "nonzero_pattern_matches_generating": {
+        "value": 0.0,
+        "passed": true
+      },
+      "absent_orders_max_abs": {
+        "value": 0.0,
+        "passed": true
+      },
+      "present_orders_fully_dense": {
+        "value": 0.0,
+        "passed": true
+      },
+      "order_rms_ratio_max_error": {
+        "value": 5.551115123125783e-17,
+        "passed": true
+      }
+    },
+    "all_passed": true
+  },
+  "files": {
+    "genotype_phenotype.csv": "all 256 genotypes, standardized phenotype",
+    "rfa_coefficients.csv": "exact RFA terms, all 625 (zero-sum constrained)",
+    "rba_coefficients.csv": "exact RBA terms relative to AAAA, 256 mutant terms (terms involving a reference state are 0 by definition)"
+  }
+}
